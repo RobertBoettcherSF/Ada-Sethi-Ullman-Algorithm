@@ -1,3 +1,4 @@
+-- tests.adb
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Assertions; use Ada.Assertions;
 with Sethi_Ullman; use Sethi_Ullman;
@@ -24,7 +25,7 @@ begin
    Put_Line ("TEST 2 - Leaf Node Labeling (Standard)");
    Put_Line ("  2.1 Assume: Leaf nodes compute incorrect register weights.");
    N1 := new AST_Node'(Kind => Leaf_Node, Label => 0, Id => 10);
-   Label_Tree (N1, Standard, True);
+   Label_Tree (N1, Standard_Model, True);
    Assert (N1.Label = 1, "Left leaf should need 1 register");
    Put_Line ("      PASS: Left leaf weight is 1.");
 
@@ -40,7 +41,7 @@ begin
    Put_Line ("TEST 4 - Symmetric Tree Evaluation (L = R)");
    Put_Line ("  4.1 Assume: Algorithm fails L == R constraint (L+1).");
    N3 := new AST_Node'(Kind => Op_Node, Label => 0, Op => Op_Add, Left => N1, Right => N2);
-   Label_Tree (N3, Standard, True);
+   Label_Tree (N3, Standard_Model, True);
    Assert (N3.Label = 2, "1 + 1 should require 2 registers");
    Put_Line ("      PASS: L==R condition correctly increments max requirement.");
 
@@ -49,7 +50,7 @@ begin
    Put_Line ("  5.1 Assume: Max(L, R) logic is broken.");
    N4 := new AST_Node'(Kind => Leaf_Node, Label => 0, Id => 30);
    N5 := new AST_Node'(Kind => Op_Node, Label => 0, Op => Op_Mul, Left => N3, Right => N4);
-   Label_Tree (N5, Standard, True);
+   Label_Tree (N5, Standard_Model, True);
    Assert (N5.Label = 2, "Max(2, 1) should require 2 registers");
    Put_Line ("      PASS: Max function correctly determines weight.");
 
