@@ -1,3 +1,4 @@
+-- sethi_ullman.ads
 with Ada.Containers.Vectors;
 
 package Sethi_Ullman is
@@ -10,7 +11,7 @@ package Sethi_Ullman is
 
    -- Machine architecture variants for the algorithm
    type Machine_Model is (
-      Standard,       -- All leaves require 1 register to load
+      Standard_Model, -- All leaves require 1 register to load (renamed to avoid collision with Ada.Standard)
       Memory_Operand  -- Right leaf can be operated directly from memory (requires 0 registers)
    );
 
@@ -63,7 +64,7 @@ package Sethi_Ullman is
    -- Phase 1: Labeling the AST (Calculates register needs)
    procedure Label_Tree 
      (Root    : AST_Ptr; 
-      Model   : Machine_Model := Standard; 
+      Model   : Machine_Model := Standard_Model; 
       Is_Left : Boolean := True);
 
    -- Variant: Optimizes AST by rearranging commutative operators (Add/Mul) to minimize registers
