@@ -1,3 +1,4 @@
+-- sethi_ullman.adb
 with Ada.Unchecked_Deallocation;
 
 package body Sethi_Ullman is
@@ -17,7 +18,7 @@ package body Sethi_Ullman is
 
    procedure Label_Tree 
      (Root    : AST_Ptr; 
-      Model   : Machine_Model := Standard; 
+      Model   : Machine_Model := Standard_Model; 
       Is_Left : Boolean := True) is
    begin
       if Root = null then
